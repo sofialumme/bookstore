@@ -17,7 +17,7 @@ public class BookController {
 	@Autowired
 	private BookRepository repository;
 
-	@GetMapping("/index")
+	@GetMapping("/booklist")
 	public String getBooks(Model model) {
 		model.addAttribute("books", repository.findAll());
 		return "booklist";
