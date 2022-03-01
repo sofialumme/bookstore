@@ -26,17 +26,21 @@ public class BookstoreApplication {
 	public CommandLineRunner demo(BookRepository brepository, CategoryRepository crepository) {
 		return (args) -> {
 			log.info("save some categories");
-			crepository.save(new Category("Literary Fiction"));
-			crepository.save(new Category("Crime & Mystery"));
-			crepository.save(new Category("Fantasy"));
-			crepository.save(new Category("Comic"));
+			Category category1 = new Category("Literary Fiction");
+			crepository.save(category1);
+			Category category2 = new Category("Crime & Mystery");
+			crepository.save(category2);
+			Category category3 = new Category("Fantasy");
+			crepository.save(category3);
+			Category category4 = new Category("Comic");
+			crepository.save(category4);
 			
 			log.info("save some books");
-			brepository.save(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, "12345123-1", 10.99));
-			brepository.save(new Book("The Name of the Rose", "Umberto Eco", 1980, "1212123-45", 12.99));
-			brepository.save(new Book("To Kill a Mockingbird", "Harper Lee", 1960, "2345656-11", 13.99));
-			brepository.save(new Book("A Game of Thrones", "George R. R. Martin", 1996, "3216543-12", 12.99));
-			brepository.save(new Book("Watchmen", "Alan Moore", 1987, "1234567-12", 15.99));
+			brepository.save(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, "12345123-1", 10.99, category1));
+			brepository.save(new Book("The Name of the Rose", "Umberto Eco", 1980, "1212123-45", 12.99, category2));
+			brepository.save(new Book("To Kill a Mockingbird", "Harper Lee", 1960, "2345656-11", 13.99, category1));
+			brepository.save(new Book("A Game of Thrones", "George R. R. Martin", 1996, "3216543-12", 12.99, category3));
+			brepository.save(new Book("Watchmen", "Alan Moore", 1987, "1234567-12", 15.99, category4));
 			
 			log.info("fetch all categories");
 			for (Category category : crepository.findAll()) {
