@@ -35,7 +35,7 @@ public class BookstoreApplication {
 			brepository.save(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, "12345123-1", 10.99));
 			brepository.save(new Book("The Name of the Rose", "Umberto Eco", 1980, "1212123-45", 12.99));
 			brepository.save(new Book("To Kill a Mockingbird", "Harper Lee", 1960, "2345656-11", 13.99));
-			brepository.save(new Book("A Game of Thrones", "George R. R. Martin", 1996, "321654-12", 12.99));
+			brepository.save(new Book("A Game of Thrones", "George R. R. Martin", 1996, "3216543-12", 12.99));
 			brepository.save(new Book("Watchmen", "Alan Moore", 1987, "1234567-12", 15.99));
 			
 			log.info("fetch all categories");
