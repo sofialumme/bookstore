@@ -1,5 +1,8 @@
 package hh.swd20.bookstore.web;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.swd20.bookstore.domain.Book;
 import hh.swd20.bookstore.domain.BookRepository;
@@ -52,5 +56,14 @@ public class BookController {
 		model.addAttribute("categories", crepository.findAll());
 		return "editbook";
 	}
-		
+	
+	@GetMapping("/books")
+	public @ResponseBody List<Book> bookListRest() {
+		return (List<Book>) brepository.findAll();
+	}
+	
+	@GetMapping("/books/{id}")
+	public @ResponseBody Optional<Book> findBookByIdRest(@PathVariable("id") Long bookId) {
+		return brepository.findById(bookId);
+	}
 }
