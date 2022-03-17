@@ -18,50 +18,55 @@ import hh.swd20.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
-	
+
 	@Autowired
 	private BookRepository brepository;
-	
+
 	@Autowired
 	private CategoryRepository crepository;
+
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
+	}
 
 	@GetMapping("/booklist")
 	public String getBooks(Model model) {
 		model.addAttribute("books", brepository.findAll());
 		return "booklist";
 	}
-	
+
 	@RequestMapping("/booklist/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
 		model.addAttribute("categories", crepository.findAll());
 		return "addbook";
 	}
-	
+
 	@PostMapping("/booklist/save")
 	public String save(Book book) {
 		brepository.save(book);
 		return "redirect:/booklist";
 	}
-	
+
 	@GetMapping("/booklist/delete/{id}")
 	public String deleteBook(@PathVariable("id") Long bookId) {
 		brepository.deleteById(bookId);
 		return "redirect:/booklist";
 	}
-	
+
 	@RequestMapping("/booklist/edit/{id}")
 	public String editBook(@PathVariable("id") Long bookId, Model model) {
 		model.addAttribute("book", brepository.findById(bookId));
 		model.addAttribute("categories", crepository.findAll());
 		return "editbook";
 	}
-	
+
 	@GetMapping("/books")
 	public @ResponseBody List<Book> bookListRest() {
 		return (List<Book>) brepository.findAll();
 	}
-	
+
 	@GetMapping("/books/{id}")
 	public @ResponseBody Optional<Book> findBookByIdRest(@PathVariable("id") Long bookId) {
 		return brepository.findById(bookId);
