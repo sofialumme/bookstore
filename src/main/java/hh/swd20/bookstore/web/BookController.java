@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.swd20.bookstore.domain.Book;
 import hh.swd20.bookstore.domain.BookRepository;
+import hh.swd20.bookstore.domain.Category;
 import hh.swd20.bookstore.domain.CategoryRepository;
 
+@CrossOrigin
 @Controller
 public class BookController {
 
@@ -73,4 +76,5 @@ public class BookController {
 	public @ResponseBody Optional<Book> findBookByIdRest(@PathVariable("id") Long bookId) {
 		return brepository.findById(bookId);
 	}
+	
 }
